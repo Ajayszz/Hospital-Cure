@@ -1,0 +1,14 @@
+<img src="{{ service.category_pic }}">
+
+<h1> {{service.category}}</h1>
+<h3>Fee: {{service.fee}}</h3>
+<u1>
+    {% for doctor in service.doctor_set.all %}
+    <li>
+        Dr. {{doctor.name}} with {{doctor.qualification}} having {{doctor.experience}}
+
+    </li>
+    <img src="{{doctor.doc_pic}}">
+
+    {% endfor %}
+</u1>

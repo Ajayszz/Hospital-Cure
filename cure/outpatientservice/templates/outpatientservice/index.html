@@ -1,0 +1,38 @@
+<h1>Welcome to CURE hospital</h1>
+<br/>
+
+
+<h3>Below are list of services</h3>
+
+{% if all_services %}
+  <u1>
+      {% for service in all_services %}
+      <li>
+          <a href="/opservices/{{ service.category }}">{{service.category}}</a>
+
+      </li>
+
+      {% endfor %}
+  </u1>
+
+{% endif %}
+
+<form action="{% url 'outpatientservice:book_appointment' %}" method="post">
+    {% csrf_token %}
+    <label for="your_name">Your Name:</label>
+    <input id="your_name" type="text" name="your_name" value=""> <br/>
+    <label for="your_age">Your Age:</label>
+    <input id="your_age" type="text" name="your_age" value=""> <br/>
+    <label for="doctor_name">Doctor Name:</label>
+    <select name="doctor_name" id="doctor_name">
+        {% for doctor in all_doctors %}
+        <option value="{{doctor.id}}">{{doctor.name}}</option>
+        {% endfor %}
+
+    </select><br/>
+    <label for="your_time"> Booking Time:</label>
+    <input id="your_time" type="text" name="your_time" value="{{ timestamp }}">
+    <br/><br/>
+    <input type="submit" value="Book Appointment">
+
+</form>
